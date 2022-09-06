@@ -9,7 +9,10 @@ app.set('view engine', 'ejs');
 
 // Listening for requests
 app.listen(3000);
+
 app.use(morgan('dev'));
+app.use(express.static('public'));
+
 app.get('/', (request, response) => {
 	const blogs = [
 		{title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
