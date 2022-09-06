@@ -1,5 +1,7 @@
 const express = require('express');
 
+const morgan = require('morgan')
+
 const app = express();
 
 // Register view engine
@@ -7,7 +9,7 @@ app.set('view engine', 'ejs');
 
 // Listening for requests
 app.listen(3000);
-
+app.use(morgan('dev'));
 app.get('/', (request, response) => {
 	const blogs = [
 		{title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
@@ -21,6 +23,9 @@ app.get('/about', (request, response) => {
 });
 app.get('/about-us', (request, response) => {
 	response.redirect('about');
+});
+app.get('/blogs/create', (request, response) => {
+	response.render('create', {title: "Create"});
 });
 // 404 page
 app.use((request, response) => {
